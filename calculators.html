@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIP and Goal Calculators | Dreemz Wealth</title>
+<meta name="description" content="Estimate how a monthly SIP can grow, and how much you may need to invest each month to reach a goal. Illustrative only.">
+<link rel="canonical" href="https://dreemzwealth.com/calculators.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dreemz Wealth">
+<meta property="og:title" content="SIP and Goal Calculators | Dreemz Wealth">
+<meta property="og:description" content="Estimate how a monthly SIP can grow, and how much you may need to invest each month to reach a goal. Illustrative only.">
+<meta property="og:url" content="https://dreemzwealth.com/calculators.html">
+<meta property="og:image" content="https://dreemzwealth.com/assets/img/og-image.jpg">
+<meta name="theme-color" content="#161a24">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/icon-32.png">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=20261017">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Dreemz Wealth home"><img src="assets/img/dreemz-logo-sm.jpg" width="1014" height="263" alt="Dreemz Wealth"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="how-we-work.html">How We Work</a>
+      <a href="calculators.html" aria-current="page">Calculators</a>
+      <a href="credentials.html">Credentials</a>
+      <a class="btn btn--ink" href="contact.html">Book a consultation</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero hero--page">
+  <div class="wrap">
+    <p class="eyebrow">Calculators</p>
+    <h1>See what steady investing can do</h1>
+    <p class="lede">Move the sliders or type a value. Results update instantly and are shown in Indian rupees, lakh and crore.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap stack-lg">
+    <div class="section-head" style="margin-bottom:0">
+      <p class="eyebrow">SIP calculator</p>
+      <h2>How much could my monthly SIP grow to?</h2>
+    </div>
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="field">
+          <div class="field-row"><label for="sip-amt">Monthly investment (₹)</label><input class="num-in" id="sip-amt-n" type="number" inputmode="numeric" min="500" max="200000" step="500" value="10000" aria-label="Monthly investment in rupees"></div>
+          <input type="range" id="sip-amt" min="500" max="200000" step="500" value="10000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label for="sip-yrs">Investment period (years)</label><input class="num-in" id="sip-yrs-n" type="number" inputmode="numeric" min="1" max="40" step="1" value="15" aria-label="Years"></div>
+          <input type="range" id="sip-yrs" min="1" max="40" step="1" value="15">
+        </div>
+        <div class="field">
+          <div class="field-row"><label for="sip-rate">Assumed annual return (%)</label><input class="num-in" id="sip-rate-n" type="number" inputmode="decimal" min="1" max="20" step="0.5" value="12" aria-label="Assumed annual return percent"></div>
+          <input type="range" id="sip-rate" min="1" max="20" step="0.5" value="12">
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div>
+          <div class="out-label">Estimated value at the end of the period</div>
+          <div class="out-big" id="sip-fv">₹0</div>
+          <div class="out-words" id="sip-fv-w"></div>
+        </div>
+        <div class="out-grid">
+          <div><span class="out-label">Total invested</span><b id="sip-inv">₹0</b></div>
+          <div><span class="out-label">Estimated gains</span><b id="sip-gain">₹0</b></div>
+        </div>
+        <div class="bar" id="sip-bar"><i class="b-inv"></i><i class="b-gain"></i></div>
+        <div class="legend"><span style="--c:#8e96b4">Amount invested</span><span style="--c:#d6ad55">Estimated gains</span></div>
+        <svg class="chart" id="sip-chart" role="img" aria-label="Year-by-year growth of the SIP"></svg>
+        <p class="calc-note">Assumes the same amount is invested at the start of every month and the assumed return is earned every year. Real mutual fund returns vary and can be negative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap stack-lg">
+    <div class="section-head" style="margin-bottom:0">
+      <p class="eyebrow">Goal planner</p>
+      <h2>How much should I invest each month for a goal?</h2>
+    </div>
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="field">
+          <div class="field-row"><label for="goal-cost">What the goal costs today (₹)</label><input class="num-in" id="goal-cost-n" type="number" inputmode="numeric" min="100000" max="50000000" step="50000" value="2500000" aria-label="Cost of the goal today in rupees"></div>
+          <input type="range" id="goal-cost" min="100000" max="50000000" step="50000" value="2500000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label for="goal-yrs">Years until you need it</label><input class="num-in" id="goal-yrs-n" type="number" inputmode="numeric" min="1" max="40" step="1" value="12" aria-label="Years until the goal"></div>
+          <input type="range" id="goal-yrs" min="1" max="40" step="1" value="12">
+        </div>
+        <div class="field">
+          <div class="field-row"><label for="goal-infl">Expected inflation (%)</label><input class="num-in" id="goal-infl-n" type="number" inputmode="decimal" min="0" max="15" step="0.5" value="6" aria-label="Expected inflation percent"></div>
+          <input type="range" id="goal-infl" min="0" max="15" step="0.5" value="6">
+        </div>
+        <div class="field">
+          <div class="field-row"><label for="goal-rate">Assumed annual return (%)</label><input class="num-in" id="goal-rate-n" type="number" inputmode="decimal" min="1" max="20" step="0.5" value="11" aria-label="Assumed annual return percent"></div>
+          <input type="range" id="goal-rate" min="1" max="20" step="0.5" value="11">
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div>
+          <div class="out-label">Monthly SIP needed</div>
+          <div class="out-big" id="goal-sip">₹0</div>
+          <div class="out-words">for <span id="goal-yrs-out">12 years</span></div>
+        </div>
+        <div class="out-grid">
+          <div><span class="out-label">Goal cost when you need it</span><b id="goal-future">₹0</b><span class="out-words" id="goal-future-w"></span></div>
+          <div><span class="out-label">Total you will invest</span><b id="goal-inv">₹0</b></div>
+        </div>
+        <p class="calc-note">Example: a ₹25 lakh education goal, 12 years away, with 6% inflation. The goal's cost is grown by inflation, then divided into equal monthly SIPs at the assumed return. Illustrative only.</p>
+        <a class="btn btn--gold" href="contact.html" style="justify-self:start">Plan this goal with Wilfred</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="note">These calculators are for illustration and education only. They are not a recommendation of any scheme and do not promise any return. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="name">DREEMZ WEALTH</span>
+        <p>Mutual fund investments for families in India and NRIs residing abroad.</p>
+        <p class="reg">AMFI-registered Mutual Fund Distributor<br>ARN-359001 &middot; EUIN E685175</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Wilfred</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="how-we-work.html">How We Work</a></li>
+          <li><a href="calculators.html">Calculators</a></li>
+          <li><a href="credentials.html">Credentials</a></li>
+          <li><a href="disclosures.html">Disclosures</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>India</h4>
+        <ul>
+          <li>Kochi and Kottayam, Kerala</li>
+          <li><a href="tel:+919446206915">+91 94462 06915</a></li>
+          <li><a href="https://wa.me/919446206915" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>UAE contact (for NRI clients)</h4>
+        <ul>
+          <li>Al Karama, Dubai</li>
+          <li><a href="tel:+971509843813">+971 50 984 3813</a></li>
+          <li><a href="https://wa.me/971509843813" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:wilfred@dreemzwealth.com">wilfred@dreemzwealth.com</a></li>
+          <li><a href="https://www.linkedin.com/in/wilfred-thomson/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/dreemzwealth/" target="_blank" rel="noopener">Instagram @dreemzwealth</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p><strong>Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</strong></p>
+      <p>Dreemz Wealth is the business name of Wilfred Thomson Varavukalayil, an AMFI-registered Mutual Fund Distributor (ARN-359001, EUIN E685175). We distribute mutual fund schemes and receive commission from Asset Management Companies on investments made through us. Past performance may or may not be sustained in future and is not a guarantee of future returns. See our <a href="disclosures.html">full disclosures</a>.</p>
+      <p>&copy; <span data-year>2026</span> Dreemz Wealth. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/config.js?v=20261017"></script>
+<script src="assets/js/main.js?v=20261017"></script>
+</body>
+</html>
