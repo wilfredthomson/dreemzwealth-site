@@ -2,6 +2,13 @@
 (function () {
   "use strict";
 
+  /* ---------- Menu bar: show the emblem once the banner / brand bar scrolls away ---------- */
+  var hdr = document.querySelector(".site-header");
+  var top = document.querySelector(".banner, .brandbar");
+  if (hdr && top && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (e) { hdr.classList.toggle("is-stuck", !e[0].isIntersecting); }).observe(top);
+  } else if (hdr) { hdr.classList.add("is-stuck"); }
+
   /* ---------- Mobile navigation ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
@@ -184,10 +191,11 @@
       var mobile = form.mobile.value.replace(/[^\d]/g, "");
       var message = form.message.value.trim();
       var ok = true;
-      showErr("name", ""); showErr("mobile", ""); showErr("message", "");
+      showErr("name", ""); showErr("mobile", ""); showErr("message", ""); showErr("consent", "");
       if (name.length < 2) { showErr("name", "Please enter your full name."); ok = false; }
       if (mobile.length < 7 || mobile.length > 13) { showErr("mobile", "Please enter a valid mobile number."); ok = false; }
       if (message.length < 5) { showErr("message", "Please tell us a little about what you'd like help with."); ok = false; }
+      if (form.consent && !form.consent.checked) { showErr("consent", "Please tick the box to agree before sending."); ok = false; }
       if (!ok) { status.hidden = true; return; }
       if (form.website.value) { return; } // spam trap
 
@@ -201,7 +209,7 @@
       btn.disabled = true; btn.textContent = "Sending…";
       var body = new URLSearchParams({
         name: name, mobile: code + " " + mobile, message: message,
-        page: location.pathname, sent: new Date().toISOString()
+        page: location.pathname, sent: new Date().toISOString(), consent: form.consent && form.consent.checked ? "yes" : "no"
       });
       fetch(endpoint, { method: "POST", mode: "no-cors", body: body })
         .then(function () {
