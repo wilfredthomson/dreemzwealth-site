@@ -22,15 +22,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=20261112">
+<link rel="stylesheet" href="assets/css/style.css?v=20261113b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="id-strip"><div class="wrap"><span>Wilfred Thomson Varavukalayil</span><span class="gold-dot" aria-hidden="true"></span><span>AMFI-registered Mutual Fund Distributor</span><span class="gold-dot" aria-hidden="true"></span><span>ARN-359001</span></div></div>
-<div class="brandbar">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Dreemz Wealth home"><picture><source type="image/webp" srcset="assets/img/brand/logo-h-128.webp"><img src="assets/img/brand/logo-h-128.png" width="532" height="128" alt="Dreemz Wealth"></picture></a>
-  </div>
+<div class="banner banner--page">
+  <picture>
+    <source type="image/webp" media="(max-width: 760px)" srcset="assets/img/banner/page-top-mobile-800x260.webp 800w, assets/img/banner/page-top-mobile-1090x354.webp 1090w" sizes="100vw">
+    <source type="image/webp" srcset="assets/img/banner/page-top-wide-1280x209.webp 1280w, assets/img/banner/page-top-wide-1920x314.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw">
+    <img src="assets/img/banner/page-top-wide-1280x209.webp" width="1920" height="314" alt="Dreemz Wealth. Invest smarter. Live better.">
+  </picture>
 </div>
 <header class="site-header">
   <div class="wrap">
@@ -43,8 +45,10 @@
       <a href="how-we-work.html">How We Work</a>
       <a href="calculators.html">Calculators</a>
       <a href="credentials.html">Credentials</a>
+      <a href="faqs.html">FAQs</a>
       <a href="disclosures.html">Disclosures</a>
-      <a class="btn btn--gold" href="contact.html">Book a meeting</a>
+      <a class="nav-phone" href="tel:+919446206915" aria-label="Call +91 94462 06915" title="Call +91 94462 06915"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="np-num">+91 94462 06915</span></a>
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
     </nav>
   </div>
 </header>
@@ -64,20 +68,20 @@
       <h2>Mutual fund investing for each stage of life</h2>
     </div>
     <div class="svc-list">
-      <div class="svc" id="nri">
-        <h3>NRI Investments in India</h3>
+      <div class="svc has-ico" id="nri">
+        <h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>NRI Investments in India</h3>
         <p>Invest in Indian mutual funds from abroad through NRE and NRO routes, with KYC and FATCA compliance in order. Investments are structured in line with current NRI tax rules and coordinated with your Chartered Accountant.</p>
       </div>
-      <div class="svc" id="goals">
-        <h3>Goal-based Mutual Fund Investing</h3>
+      <div class="svc has-ico" id="goals">
+        <h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>Goal-based Mutual Fund Investing</h3>
         <p>A child's education, a home, a wedding: each goal gets its own timeline, risk level and fund mix.</p>
       </div>
-      <div class="svc" id="retirement">
-        <h3>Retirement Investing</h3>
+      <div class="svc has-ico" id="retirement">
+        <h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 6V3M5.6 8.6 3.5 6.5M18.4 8.6l2.1-2.1M8 21h8"/></svg></span>Retirement Investing</h3>
         <p>Build a retirement corpus through mutual funds, and later draw regular withdrawals from it through a Systematic Withdrawal Plan.</p>
       </div>
-      <div class="svc" id="returning">
-        <h3>Returning to India</h3>
+      <div class="svc has-ico" id="returning">
+        <h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>Returning to India</h3>
         <p>Moving back takes planning years ahead. We help you transition your investments, update your residential status with fund houses, and align your portfolio with your new life, working alongside your CA on the tax side.</p>
       </div>
     </div>
@@ -90,33 +94,48 @@
       <p class="eyebrow">How we deliver it</p>
       <h2>Trusted, transparent offerings</h2>
     </div>
-    <div class="grid grid-3">
+    <div class="grid grid-2">
       <div class="offer">
-        <span class="tag">Mutual Funds</span>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V5M16 20v-6M2 20h20"/></svg></span><span class="tag">Mutual Funds</span>
         <h3>Mutual Fund Investments</h3>
         <p>New portfolio creation, review of your existing mutual fund holdings when you ask us to, and rebalancing where suitable.</p>
       </div>
       <div class="offer">
-        <span class="tag">SIP</span>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="tag">SIP</span>
         <h3>SIP Investments</h3>
         <p>Systematic Investment Plans (monthly, weekly or daily) to invest regularly and with discipline.</p>
       </div>
       <div class="offer">
-        <span class="tag">SWP</span>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9v6M18 9v6"/></svg></span><span class="tag">SWP</span>
         <h3>Regular Withdrawals (SWP)</h3>
         <p>Systematic Withdrawal Plans that pay out an amount you choose, monthly or quarterly. Withdrawals reduce your units, and the value of the remaining investment can go down.</p>
+      </div>
+      <div class="offer">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="tag">ELSS</span>
+        <h3>Tax-Saving Investing (ELSS)</h3>
+        <p>Equity Linked Savings Schemes carry a 3-year lock-in. Under the old tax regime, investments may qualify for a deduction of up to &#8377;1.5 lakh a year. Tax rules change, so please confirm the current position with your Chartered Accountant.</p>
       </div>
     </div>
     <p class="note" style="margin-top:28px">Dreemz Wealth is an AMFI-registered Mutual Fund Distributor (ARN-359001). Tax-related matters should be confirmed with a qualified Chartered Accountant.</p>
   </div>
 </section>
 
+<div class="pbanner">
+  <picture>
+    <source type="image/webp" media="(max-width: 760px)" srcset="assets/img/banner/page-foot-mobile-800x229.webp 800w, assets/img/banner/page-foot-mobile-1050x300.webp 1050w" sizes="100vw">
+    <source type="image/webp" srcset="assets/img/banner/page-foot-wide-1280x177.webp 1280w, assets/img/banner/page-foot-wide-1920x265.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw">
+    <img src="assets/img/banner/page-foot-wide-1280x177.webp" width="1920" height="265" alt="Dream. Plan. Invest. Grow. Turning dreams into achievable financial goals." loading="lazy" decoding="async">
+  </picture>
+</div>
 <section class="section section--ink cta-band">
   <div class="wrap">
-    <h2>Not sure where to start? Tell us your goals.</h2>
+    <div class="stack cta-text">
+      <h2>Not sure where to start? Tell us your goals.</h2>
+      <p class="cta-sub">Not sure what to do with some money? You can ask a question before you decide to invest.</p>
+    </div>
     <div class="btn-row">
-      <a class="btn btn--gold" href="contact.html">Book a meeting</a>
-      <a class="btn btn--ghost" href="calculators.html">Plan a goal</a>
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
+      <a class="btn btn--ghost" href="contact.html?type=question#enquiry">Ask a question</a>
     </div>
   </div>
 </section>
@@ -137,6 +156,7 @@
           <li><a href="how-we-work.html">How We Work</a></li>
           <li><a href="calculators.html">Calculators</a></li>
           <li><a href="credentials.html">Credentials</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
           <li><a href="disclosures.html">Disclosures</a></li>
         </ul>
       </div>
@@ -172,7 +192,8 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/config.js?v=20261112"></script>
-<script src="assets/js/main.js?v=20261112"></script>
+<a class="wa-float" href="https://wa.me/919446206915" target="_blank" rel="noopener" aria-label="Chat with Wilfred on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg><span>WhatsApp</span></a>
+<script src="assets/js/config.js?v=20261113b"></script>
+<script src="assets/js/main.js?v=20261113b"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=20261112">
+<link rel="stylesheet" href="assets/css/style.css?v=20261113b">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FinancialService","name":"Dreemz Wealth","url":"https://dreemzwealth.com/","email":"wilfred@dreemzwealth.com","founder":{"@type":"Person","name":"Wilfred Thomson","sameAs":"https://www.linkedin.com/in/wilfred-thomson/"},"telephone":["+91-9446206915","+971-50-9843813"],"areaServed":["IN","AE"],"sameAs":["https://www.instagram.com/dreemzwealth/"],"address":[{"@type":"PostalAddress","addressLocality":"Kochi","addressRegion":"Kerala","addressCountry":"IN"},{"@type":"PostalAddress","addressLocality":"Kottayam","addressRegion":"Kerala","addressCountry":"IN"},{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"}]}
 </script>
@@ -48,33 +48,52 @@
       <a href="how-we-work.html">How We Work</a>
       <a href="calculators.html">Calculators</a>
       <a href="credentials.html">Credentials</a>
+      <a href="faqs.html">FAQs</a>
       <a href="disclosures.html">Disclosures</a>
-      <a class="btn btn--gold" href="contact.html">Book a meeting</a>
+      <a class="nav-phone" href="tel:+919446206915" aria-label="Call +91 94462 06915" title="Call +91 94462 06915"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="np-num">+91 94462 06915</span></a>
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
     </nav>
   </div>
 </header>
 <main id="main">
-<section class="hero">
+<section class="hero hero--home">
   <div class="wrap">
     <div>
-      <h1>Every dream needs a plan. <em>Let's build yours.</em></h1>
+      <h1>Dreams, engineered. <em>Investing, disciplined.</em></h1>
       <p class="lede">Dreemz Wealth helps individuals and families in India and NRIs living abroad turn life goals into disciplined mutual fund portfolios, with honest guidance and regular reviews.</p>
       <div class="tagline hero-tagline"><span class="t-dream">Dream</span><span class="sep">|</span><span class="t-plan">Plan</span><span class="sep">|</span><span class="t-invest">Invest</span><span class="sep">|</span><span class="t-grow">Grow</span></div>
       <div class="btn-row">
-        <a class="btn btn--gold" href="contact.html">Book a meeting</a>
-        <a class="btn btn--ghost" href="calculators.html">Try the SIP calculator</a>
+        <a class="btn btn--gold" href="contact.html?type=question#enquiry">Ask a question</a>
+        <a class="btn btn--ghost" href="calculators.html">Calculate my SIP</a>
       </div>
     </div>
-    <aside class="reg-card" aria-label="Registration details">
-      <span class="reg-head">Registered with AMFI</span>
-      <dl>
-        <dt>ARN</dt><dd>ARN-359001</dd>
-        <dt>EUIN</dt><dd>E685175</dd>
-        <dt>Valid till</dt><dd>16-APR-2029</dd>
-        <dt>Certified</dt><dd>NISM Series V-A &amp; V-B</dd>
-      </dl>
-      <span class="reg-foot">Verify these on the <a href="credentials.html" style="color:inherit">Credentials page</a>.</span>
-    </aside>
+    <figure class="hero-visual">
+      <img src="assets/img/hero-dubai.svg" width="640" height="440" alt="Illustrated Dubai skyline at dusk">
+      <figcaption class="hero-badge">
+        <span class="reg-head">Registered with AMFI</span>
+        <b>ARN-359001</b>
+        <span>EUIN E685175 &middot; NISM V-A &amp; V-B</span>
+        <a href="credentials.html">Verify credentials</a>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="ribbon" aria-label="What we focus on">
+  <div class="ribbon-track">
+    <ul><li>Disciplined SIPs</li><li>NRI Investing</li><li>Goal-based Investing</li><li>Asset Allocation</li><li>Regular Reviews</li><li>Tax-Saving ELSS</li><li>Systematic Withdrawals</li><li>KYC &amp; FATCA Help</li><li>Returning to India</li></ul>
+    <ul aria-hidden="true"><li>Disciplined SIPs</li><li>NRI Investing</li><li>Goal-based Investing</li><li>Asset Allocation</li><li>Regular Reviews</li><li>Tax-Saving ELSS</li><li>Systematic Withdrawals</li><li>KYC &amp; FATCA Help</li><li>Returning to India</li></ul>
+  </div>
+</div>
+
+<section class="stats" aria-label="At a glance">
+  <div class="wrap">
+    <ul>
+      <li><b>35+</b><span>years in the IT industry</span></li>
+      <li><b>30+</b><span>years living and working in the UAE</span></li>
+      <li><b>35+</b><span>years investing, as a resident Indian and an NRI</span></li>
+      <li><b>ARN-359001</b><span>AMFI-registered Mutual Fund Distributor</span></li>
+    </ul>
   </div>
 </section>
 
@@ -132,10 +151,10 @@
       <p class="lede">Delivered through mutual funds, SIPs and Systematic Withdrawal Plans.</p>
     </div>
     <div class="svc-list">
-      <div class="svc"><h3>NRI Investments in India</h3><p>Invest through NRE/NRO routes with KYC and FATCA in order, structured in line with current NRI tax rules and coordinated with your Chartered Accountant.</p></div>
-      <div class="svc"><h3>Goal-based Mutual Fund Investing</h3><p>Every goal gets its own timeline, risk level and fund mix, so you always know what each investment is for.</p></div>
-      <div class="svc"><h3>Retirement Investing</h3><p>Build a retirement corpus through mutual funds, and later draw regular withdrawals from it through a Systematic Withdrawal Plan.</p></div>
-      <div class="svc"><h3>Returning to India</h3><p>Moving back takes planning years ahead: transition your investments and update your residential status with fund houses.</p></div>
+      <div class="svc has-ico"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>NRI Investments in India</h3><p>Invest through NRE/NRO routes with KYC and FATCA in order, structured in line with current NRI tax rules and coordinated with your Chartered Accountant.</p></div>
+      <div class="svc has-ico"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>Goal-based Mutual Fund Investing</h3><p>Every goal gets its own timeline, risk level and fund mix, so you always know what each investment is for.</p></div>
+      <div class="svc has-ico"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 6V3M5.6 8.6 3.5 6.5M18.4 8.6l2.1-2.1M8 21h8"/></svg></span>Retirement Investing</h3><p>Build a retirement corpus through mutual funds, and later draw regular withdrawals from it through a Systematic Withdrawal Plan.</p></div>
+      <div class="svc has-ico"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>Returning to India</h3><p>Moving back takes planning years ahead: transition your investments and update your residential status with fund houses.</p></div>
     </div>
     <div class="btn-row" style="margin-top:28px"><a class="btn btn--ink" href="services.html">See all services</a></div>
   </div>
@@ -150,12 +169,12 @@
       <div class="stack">
         <p class="eyebrow">Meet your distributor</p>
         <h2>Wilfred Thomson</h2>
-        <p class="lede">30+ years in technology leadership across India and the GCC, and decades of investing as a resident Indian and as an NRI in Dubai.</p>
+        <p class="lede">35+ years in the IT industry, 30+ of them in the UAE, and 35+ years of investing as a resident Indian and as an NRI.</p>
       </div>
       <blockquote class="pull">"I've walked this path myself, as a resident Indian and as an NRI. Let me help you walk yours with clarity and confidence."</blockquote>
       <div class="btn-row">
         <a class="btn btn--ink" href="about.html">Read Wilfred's story</a>
-        <a class="btn btn--ghost" href="https://www.linkedin.com/in/wilfred-thomson/" target="_blank" rel="noopener">LinkedIn profile</a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/wilfred-thomson/" target="_blank" rel="noopener"><svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10.5" r="2.3"/><path d="M5.8 16.5c.6-1.8 1.9-2.7 3.2-2.7s2.6.9 3.2 2.7M14.5 9.5h3.5M14.5 13h3.5"/></svg>LinkedIn profile</a>
       </div>
     </div>
   </div>
@@ -173,6 +192,7 @@
         <h3>Kochi and Kottayam, Kerala</h3>
         <span class="clock" data-tz="Asia/Kolkata" data-tzlabel="IST"></span>
         <div class="line">Mobile / WhatsApp <b>+91 94462 06915</b></div>
+        <div class="line muted small">Meetings by appointment</div>
         <div class="actions"><a class="btn btn--ink" href="https://wa.me/919446206915" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn--ghost" href="tel:+919446206915">Call</a></div>
       </div>
       <div class="place">
@@ -180,19 +200,30 @@
         <h3>Dubai</h3>
         <span class="clock" data-tz="Asia/Dubai" data-tzlabel="GST"></span>
         <div class="line">Mobile / WhatsApp <b>+971 50 984 3813</b></div>
+        <div class="line muted small">Meetings by appointment</div>
         <div class="actions"><a class="btn btn--ink" href="https://wa.me/971509843813" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn--ghost" href="tel:+971509843813">Call</a></div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="pbanner">
+  <picture>
+    <source type="image/webp" media="(max-width: 760px)" srcset="assets/img/banner/home-foot-mobile-800x251.webp 800w, assets/img/banner/home-foot-mobile-1130x355.webp 1130w" sizes="100vw">
+    <source type="image/webp" srcset="assets/img/banner/home-foot-wide-1280x209.webp 1280w, assets/img/banner/home-foot-wide-1920x314.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw">
+    <img src="assets/img/banner/home-foot-wide-1280x209.webp" width="1920" height="314" alt="Turning dreams into achievable financial goals. Dream, Plan, Invest, Grow." loading="lazy" decoding="async">
+  </picture>
+</div>
 <section class="section section--ink cta-band">
   <div class="wrap">
-    <div class="stack">
-      <div class="tagline"><span class="t-dream">Dream</span><span class="sep">|</span><span class="t-plan">Plan</span><span class="sep">|</span><span class="t-invest">Invest</span><span class="sep">|</span><span class="t-grow">Grow</span></div>
+    <div class="stack cta-text">
       <h2>Start with a conversation about your goals.</h2>
+      <p class="cta-sub">Not sure what to do with some money? You can ask a question before you decide to invest.</p>
     </div>
-    <a class="btn btn--gold" href="contact.html">Book a meeting</a>
+    <div class="btn-row">
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
+      <a class="btn btn--ghost" href="contact.html?type=question#enquiry">Ask a question</a>
+    </div>
   </div>
 </section>
 </main>
@@ -212,6 +243,7 @@
           <li><a href="how-we-work.html">How We Work</a></li>
           <li><a href="calculators.html">Calculators</a></li>
           <li><a href="credentials.html">Credentials</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
           <li><a href="disclosures.html">Disclosures</a></li>
         </ul>
       </div>
@@ -247,7 +279,8 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/config.js?v=20261112"></script>
-<script src="assets/js/main.js?v=20261112"></script>
+<a class="wa-float" href="https://wa.me/919446206915" target="_blank" rel="noopener" aria-label="Chat with Wilfred on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg><span>WhatsApp</span></a>
+<script src="assets/js/config.js?v=20261113b"></script>
+<script src="assets/js/main.js?v=20261113b"></script>
 </body>
 </html>

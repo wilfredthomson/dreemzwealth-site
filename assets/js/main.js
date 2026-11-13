@@ -50,6 +50,18 @@
     if (r === 0) return monthly * n;
     return monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
   }
+  /* Step-up SIP: the monthly amount rises by stepPct once every 12 months.
+     Returns the value and total invested at the end of each year. */
+  function stepSip(monthly, annualRatePct, years, stepPct) {
+    var r = annualRatePct / 100 / 12, n = Math.round(years * 12), g = (stepPct || 0) / 100;
+    var bal = 0, inv = 0, m = monthly, out = [];
+    for (var i = 1; i <= n; i++) {
+      bal = (bal + m) * (1 + r); inv += m;
+      if (i % 12 === 0) { out.push({ fv: bal, inv: inv, last: m }); m = m * (1 + g); }
+    }
+    if (n % 12) out.push({ fv: bal, inv: inv, last: m });
+    return out;
+  }
   /* Monthly SIP needed to reach a target. */
   function sipNeeded(target, annualRatePct, years) {
     var unit = sipFV(1, annualRatePct, years);
@@ -83,15 +95,15 @@
   }
 
   /* Year-by-year growth chart (SVG, drawn to scale). */
-  function drawChart(svg, monthly, rate, years) {
-    if (!svg) return;
+  function drawChart(svg, series) {
+    if (!svg || !series.length) return;
     var W = 520, H = 220, padL = 8, padR = 8, padT = 14, padB = 26;
-    var yrs = Math.max(1, Math.round(years));
-    var maxV = sipFV(monthly, rate, yrs);
+    var yrs = series.length;
+    var maxV = series[yrs - 1].fv;
     var bw = (W - padL - padR) / yrs;
     var parts = [];
     for (var y = 1; y <= yrs; y++) {
-      var v = sipFV(monthly, rate, y), inv = monthly * 12 * y;
+      var v = series[y - 1].fv, inv = series[y - 1].inv;
       var h = maxV > 0 ? (v / maxV) * (H - padT - padB) : 0;
       var hi = maxV > 0 ? (inv / maxV) * (H - padT - padB) : 0;
       var x = padL + (y - 1) * bw + bw * 0.15, w = bw * 0.7;
@@ -109,19 +121,22 @@
 
   /* ---------- SIP calculator ---------- */
   if (document.getElementById("sip-amt")) {
-    var amt, yrs, rate;
+    var amt, yrs, rate, stepUp;
     var runSip = function () {
-      if (!amt) return;
-      var m = amt(), y = yrs(), r = rate();
-      var fv = sipFV(m, r, y), inv = m * 12 * y;
+      if (!amt || !rate || !stepUp) return;
+      var m = amt(), y = yrs(), r = rate(), st = stepUp();
+      var series = stepSip(m, r, y, st), end = series[series.length - 1];
+      var fv = end.fv, inv = end.inv;
+      var lastEl = document.getElementById("sip-last");
+      if (lastEl) lastEl.textContent = st > 0 && y > 1 ? "Your monthly SIP grows from " + rupees(m) + " to " + rupees(end.last) + " in year " + Math.round(y) + "." : "";
       document.getElementById("sip-fv").textContent = rupees(fv);
       document.getElementById("sip-fv-w").textContent = words(fv);
       document.getElementById("sip-inv").textContent = rupees(inv);
       document.getElementById("sip-gain").textContent = rupees(fv - inv);
       setBar(document.getElementById("sip-bar"), inv, fv);
-      drawChart(document.getElementById("sip-chart"), m, r, y);
+      drawChart(document.getElementById("sip-chart"), series);
     };
-    amt = bind("sip-amt", runSip); yrs = bind("sip-yrs", runSip); rate = bind("sip-rate", runSip);
+    amt = bind("sip-amt", runSip); yrs = bind("sip-yrs", runSip); rate = bind("sip-rate", runSip); stepUp = bind("sip-step", runSip);
     runSip();
   }
 
@@ -175,9 +190,42 @@
     });
   });
 
+  /* ---------- Open every page at the top when reached from a menu or page link ----------
+     (Back/Forward keeps the browser's own position, and links to a #section still jump there.) */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {};
+    if (location.hash || nav.type === "back_forward") return;
+    var toTop = function () {
+      try { document.documentElement.scrollIntoView({ block: "start", behavior: "instant" }); } catch (e) { document.documentElement.scrollIntoView(true); }
+      window.scrollTo(0, 0);
+    };
+    toTop();
+    window.addEventListener("load", toTop, { once: true });
+  })();
+
+  /* ---------- Gentle fade-in as sections scroll into view ---------- */
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce && "IntersectionObserver" in window) {
+    var targets = document.querySelectorAll("main .section-head, main .grid > *, main .svc, main .process > li, main .stats li, main .faq-item, main .place, main .legal > h2");
+    document.documentElement.classList.add("js-reveal");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    Array.prototype.forEach.call(targets, function (el, i) {
+      el.classList.add("reveal"); el.style.transitionDelay = ((i % 4) * 70) + "ms"; io.observe(el);
+    });
+    window.addEventListener("beforeprint", function () { Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-in"); }); });
+  }
+
   /* ---------- Enquiry form → Google Apps Script ---------- */
   var form = document.getElementById("enquiry");
   if (form) {
+    /* Pre-select "Ask a question" / "Request a meeting" from the link the visitor clicked. */
+    try {
+      var want = new URLSearchParams(location.search).get("type");
+      var pick = want === "meeting" ? "Request a meeting" : want === "question" ? "Ask a question" : "";
+      if (pick) { var r = form.querySelector('input[name="request"][value="' + pick + '"]'); if (r) r.checked = true; }
+    } catch (e) {}
     var status = document.getElementById("form-status");
     var showErr = function (field, msg) {
       var input = form.querySelector("#" + field), out = form.querySelector("#" + field + "-err");
@@ -190,11 +238,16 @@
       var code = form.code.value;
       var mobile = form.mobile.value.replace(/[^\d]/g, "");
       var message = form.message.value.trim();
+      var email = form.email ? form.email.value.trim() : "";
+      var val = function (n) { var el = form.elements[n]; return el ? String(el.value || "").trim() : ""; };
+      var city = val("city"), goal = val("goal"), amount = val("amount");
+      var inv = form.querySelector('input[name="investor"]:checked'); var investor = inv ? inv.value : "";
+      var rq = form.querySelector('input[name="request"]:checked'); var request = rq ? rq.value : "";
       var ok = true;
-      showErr("name", ""); showErr("mobile", ""); showErr("message", ""); showErr("consent", "");
+      showErr("name", ""); showErr("mobile", ""); showErr("message", ""); showErr("email", ""); showErr("consent", "");
       if (name.length < 2) { showErr("name", "Please enter your full name."); ok = false; }
       if (mobile.length < 7 || mobile.length > 13) { showErr("mobile", "Please enter a valid mobile number."); ok = false; }
-      if (message.length < 5) { showErr("message", "Please tell us a little about what you'd like help with."); ok = false; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showErr("email", "Please check your email address."); ok = false; }
       if (form.consent && !form.consent.checked) { showErr("consent", "Please tick the box to agree before sending."); ok = false; }
       if (!ok) { status.hidden = true; return; }
       if (form.website.value) { return; } // spam trap
@@ -207,8 +260,12 @@
         return;
       }
       btn.disabled = true; btn.textContent = "Sending…";
+      var extras = [["Request", request], ["Email", email], ["City", city], ["I am a", investor], ["Main goal", goal], ["Monthly amount", amount]]
+        .filter(function (x) { return x[1]; }).map(function (x) { return x[0] + ": " + x[1]; }).join(" | ");
+      var fullMsg = (message || "(no message)") + (extras ? "\n\n" + extras : "");
       var body = new URLSearchParams({
-        name: name, mobile: code + " " + mobile, message: message,
+        name: name, mobile: code + " " + mobile, message: fullMsg, note: message,
+        request: request, email: email, city: city, investor: investor, goal: goal, amount: amount,
         page: location.pathname, sent: new Date().toISOString(), consent: form.consent && form.consent.checked ? "yes" : "no"
       });
       fetch(endpoint, { method: "POST", mode: "no-cors", body: body })

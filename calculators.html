@@ -22,15 +22,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=20261112">
+<link rel="stylesheet" href="assets/css/style.css?v=20261113b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="id-strip"><div class="wrap"><span>Wilfred Thomson Varavukalayil</span><span class="gold-dot" aria-hidden="true"></span><span>AMFI-registered Mutual Fund Distributor</span><span class="gold-dot" aria-hidden="true"></span><span>ARN-359001</span></div></div>
-<div class="brandbar">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Dreemz Wealth home"><picture><source type="image/webp" srcset="assets/img/brand/logo-h-128.webp"><img src="assets/img/brand/logo-h-128.png" width="532" height="128" alt="Dreemz Wealth"></picture></a>
-  </div>
+<div class="banner banner--page">
+  <picture>
+    <source type="image/webp" media="(max-width: 760px)" srcset="assets/img/banner/page-top-mobile-800x260.webp 800w, assets/img/banner/page-top-mobile-1090x354.webp 1090w" sizes="100vw">
+    <source type="image/webp" srcset="assets/img/banner/page-top-wide-1280x209.webp 1280w, assets/img/banner/page-top-wide-1920x314.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw">
+    <img src="assets/img/banner/page-top-wide-1280x209.webp" width="1920" height="314" alt="Dreemz Wealth. Invest smarter. Live better.">
+  </picture>
 </div>
 <header class="site-header">
   <div class="wrap">
@@ -43,8 +45,10 @@
       <a href="how-we-work.html">How We Work</a>
       <a href="calculators.html" aria-current="page">Calculators</a>
       <a href="credentials.html">Credentials</a>
+      <a href="faqs.html">FAQs</a>
       <a href="disclosures.html">Disclosures</a>
-      <a class="btn btn--gold" href="contact.html">Book a meeting</a>
+      <a class="nav-phone" href="tel:+919446206915" aria-label="Call +91 94462 06915" title="Call +91 94462 06915"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="np-num">+91 94462 06915</span></a>
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
     </nav>
   </div>
 </header>
@@ -77,6 +81,10 @@
           <div class="field-row"><label for="sip-rate">Assumed annual return (%)</label><input class="num-in" id="sip-rate-n" type="number" inputmode="decimal" min="1" max="20" step="0.5" value="12" aria-label="Assumed annual return percent"></div>
           <input type="range" id="sip-rate" min="1" max="20" step="0.5" value="12">
         </div>
+        <div class="field">
+          <div class="field-row"><label for="sip-step">Annual step-up (%)</label><input class="num-in" id="sip-step-n" type="number" inputmode="decimal" min="0" max="50" step="1" value="10" aria-label="Annual step-up percent"></div>
+          <input type="range" id="sip-step" min="0" max="50" step="1" value="10">
+        </div>
       </div>
       <div class="calc-out" aria-live="polite">
         <div>
@@ -88,10 +96,11 @@
           <div><span class="out-label">Total invested</span><b id="sip-inv">₹0</b></div>
           <div><span class="out-label">Estimated gains</span><b id="sip-gain">₹0</b></div>
         </div>
+        <p class="out-words" id="sip-last"></p>
         <div class="bar" id="sip-bar"><i class="b-inv"></i><i class="b-gain"></i></div>
         <div class="legend"><span style="--c:#8e96b4">Amount invested</span><span style="--c:#d6ad55">Estimated gains</span></div>
         <svg class="chart" id="sip-chart" role="img" aria-label="Year-by-year growth of the SIP"></svg>
-        <p class="calc-note">Assumes the same amount is invested at the start of every month and the assumed return is earned every year. Real mutual fund returns vary and can be negative.</p>
+        <p class="calc-note">Assumes the monthly amount is invested at the start of every month and is increased by the step-up percentage once every 12 months (set the step-up to 0% for a fixed SIP). The assumed return is earned every year. Real mutual fund returns vary and can be negative.</p>
       </div>
     </div>
   </div>
@@ -144,6 +153,25 @@
     <p class="note">These calculators are for illustration and education only. They are not a recommendation of any scheme and do not promise any return. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</p>
   </div>
 </section>
+<div class="pbanner">
+  <picture>
+    <source type="image/webp" media="(max-width: 760px)" srcset="assets/img/banner/page-foot-mobile-800x229.webp 800w, assets/img/banner/page-foot-mobile-1050x300.webp 1050w" sizes="100vw">
+    <source type="image/webp" srcset="assets/img/banner/page-foot-wide-1280x177.webp 1280w, assets/img/banner/page-foot-wide-1920x265.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw">
+    <img src="assets/img/banner/page-foot-wide-1280x177.webp" width="1920" height="265" alt="Dream. Plan. Invest. Grow. Turning dreams into achievable financial goals." loading="lazy" decoding="async">
+  </picture>
+</div>
+<section class="section section--ink cta-band">
+  <div class="wrap">
+    <div class="stack cta-text">
+      <h2>Want to check these numbers against your own goals?</h2>
+      <p class="cta-sub">Ask a question about a goal, or an amount you have in mind, before you decide anything.</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn--gold" href="contact.html?type=meeting#enquiry">Book a meeting</a>
+      <a class="btn btn--ghost" href="contact.html?type=question#enquiry">Ask a question</a>
+    </div>
+  </div>
+</section>
 </main>
 <footer class="site-footer">
   <div class="wrap">
@@ -161,6 +189,7 @@
           <li><a href="how-we-work.html">How We Work</a></li>
           <li><a href="calculators.html">Calculators</a></li>
           <li><a href="credentials.html">Credentials</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
           <li><a href="disclosures.html">Disclosures</a></li>
         </ul>
       </div>
@@ -196,7 +225,8 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/config.js?v=20261112"></script>
-<script src="assets/js/main.js?v=20261112"></script>
+<a class="wa-float" href="https://wa.me/919446206915" target="_blank" rel="noopener" aria-label="Chat with Wilfred on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg><span>WhatsApp</span></a>
+<script src="assets/js/config.js?v=20261113b"></script>
+<script src="assets/js/main.js?v=20261113b"></script>
 </body>
 </html>
