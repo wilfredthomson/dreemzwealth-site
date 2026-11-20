@@ -4,9 +4,9 @@
    deep-navy footer. Single light theme by design (brand artwork is on ivory). */
 :root {
   color-scheme: light;
-  --ink: #0b2a5b;          /* brand navy (banner / visiting card) */
-  --ink-2: #123a78;
-  --ink-deep: #061c3e;
+  --ink: #0a2149;          /* brand navy, deepened in v2.10 (was #0b2a5b) */
+  --ink-2: #0e2c5c;
+  --ink-deep: #051631;
   --ink-soft: #33405e;
   --paper: #f8f1e4;        /* ivory, a shade deeper for alternate sections */
   --white: #fffcf6;        /* page ivory */
@@ -602,3 +602,30 @@ fieldset.choice input { width: 18px; height: 18px; accent-color: var(--ink); }
   .about-split--rev { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
   .about-split--rev > .portrait { order: 2; justify-self: end; }
 }
+/* v2.10: first headline line in the same italic style, with a white "pearl" shimmer instead of gold */
+.hero--home h1 em { display: block; }
+.hero--home h1 em.h1-pearl {
+  color: #fff;
+  background-image: linear-gradient(100deg, #d9d4c8 0%, #ffffff 14%, #e6e0d2 28%, #ffffff 42%, #ddd6c7 56%, #fffaf0 70%, #d4cdbd 84%, #ffffff 100%);
+  background-size: 100% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, .12));
+}
+/* v2.10: brand line above the home headline and under the footer logo */
+.hero--home .hero-eyebrow { font-family: "IBM Plex Sans", system-ui, sans-serif; font-weight: 500; color: var(--gold-bright); letter-spacing: .2em; font-size: .78rem; margin: 0 0 14px; opacity: .95; }
+.hero--home .hero-eyebrow::before { content: "\2726"; display: inline-block; font-size: .85rem; line-height: 1; margin-right: 10px; vertical-align: -1px; color: var(--gold-bright); }
+.foot-brand .foot-tag { font-family: var(--f-display, "Cormorant Garamond", Georgia, serif); font-style: italic; font-size: 1.22rem; line-height: 1.3; color: var(--gold-bright, #f3d27f); margin: 4px 0 -4px; }
+@media (max-width: 480px) { .hero--home .hero-eyebrow { font-size: .64rem; letter-spacing: .08em; white-space: nowrap; } .hero--home .hero-eyebrow::before { font-size: .72rem; margin-right: 7px; } }
+@media (max-width: 380px) { .hero--home .hero-eyebrow { font-size: .6rem; letter-spacing: .05em; } }
+/* v2.10: quieter WhatsApp button: a small round icon on every screen size */
+.wa-float { padding: 0; width: 46px; height: 46px; justify-content: center; gap: 0; box-shadow: 0 0 0 1px #c99a3d, 0 6px 16px rgba(3, 14, 32, .3); }
+.wa-float span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wa-float svg { width: 20px; height: 20px; }
+@media (max-width: 480px) { .wa-float { width: 44px; height: 44px; padding: 0; } }
+/* v2.10: tagline and gold curve with a sparkle in the navy space of the inner-page banner */
+.banner--page .pt-frame { position: relative; max-width: 1920px; margin-inline: auto; }
+.pt-tag { position: absolute; left: 24.5%; width: 24.5%; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .45vw; pointer-events: none; line-height: 1.1; }
+.pt-tag .tagline { font-size: min(1.12vw, 21px); letter-spacing: .1em; gap: .55em; flex-wrap: nowrap; white-space: nowrap; margin: 0; align-items: center; }
+.pt-tag .pt-curve { width: 92%; height: auto; display: block; overflow: visible; }
+@media (max-width: 760px) { .pt-tag { display: none; } }
