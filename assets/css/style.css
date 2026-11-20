@@ -18,10 +18,10 @@
   --gold-tint: #f6ebd2;
   --gold-grad: linear-gradient(135deg, #f7dc93 0%, #d8a948 45%, #b8862d 70%, #f0cd78 100%);
   --gold-line: linear-gradient(90deg, #a87824, #f3d27f 30%, #c99a3d 60%, #f3d27f 85%, #a87824);
-  --dream: #2550c4;        /* tagline colours from the brand card */
-  --plan: #1b8a50;
-  --invest: #b8861f;
-  --grow: #c0303c;
+  --dream: #0b2a5b;        /* "Gold journey" tagline colours on light backgrounds: navy, then gold getting richer */
+  --plan: #b8861f;
+  --invest: #a57718;
+  --grow: #8a5c0e;
   --ok: #1b8a50;
   --err: #b42318;
 
@@ -192,7 +192,7 @@ p { margin: 0; }
 .tagline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.35rem, 1rem + 1.3vw, 1.9rem); letter-spacing: 0.06em; }
 .tagline span:nth-child(odd) { text-transform: uppercase; }
 .tagline .sep { color: var(--gold-bright); font-weight: 400; }
-.t-dream { color: #6f93f0; } .t-plan { color: #4cc488; } .t-invest { color: var(--gold-bright); } .t-grow { color: #ec6a74; }
+.t-dream { color: #fbf6ee; } .t-plan { color: #f7e3a8; } .t-invest { color: #f3d27f; } .t-grow { color: #e0a93a; } /* "Gold journey" on navy: ivory, then gold getting richer */
 .section:not(.section--ink) .t-dream { color: var(--dream); }
 .section:not(.section--ink) .t-plan { color: var(--plan); }
 .section:not(.section--ink) .t-invest { color: var(--invest); }
@@ -597,3 +597,8 @@ fieldset.choice input { width: 18px; height: 18px; accent-color: var(--ink); }
 .pbanner { background: var(--ink-deep, #061c3e); line-height: 0; border-top: 3px solid transparent; border-image: var(--gold-line) 1; }
 .pbanner picture, .pbanner img { display: block; width: 100%; max-width: 1920px; height: auto; margin-inline: auto; }
 .pbanner + .cta-band { border-top: 1px solid rgba(243,210,127,.25); }
+/* Portrait on the right on wider screens (photo faces the text); stays above the text on phones */
+@media (min-width: 821px) {
+  .about-split--rev { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+  .about-split--rev > .portrait { order: 2; justify-self: end; }
+}
