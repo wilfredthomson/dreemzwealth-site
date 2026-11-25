@@ -206,16 +206,93 @@
   /* ---------- Gentle fade-in as sections scroll into view ---------- */
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce && "IntersectionObserver" in window) {
-    var targets = document.querySelectorAll("main .section-head, main .grid > *, main .svc, main .process > li, main .stats li, main .faq-item, main .place, main .legal > h2");
+    var targets = document.querySelectorAll("main .section-head, main .grid > *");
     document.documentElement.classList.add("js-reveal");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     Array.prototype.forEach.call(targets, function (el, i) {
-      el.classList.add("reveal"); el.style.transitionDelay = ((i % 4) * 70) + "ms"; io.observe(el);
+      el.classList.add("reveal"); el.style.transitionDelay = ((i % 4) * 110) + "ms"; io.observe(el);
     });
     window.addEventListener("beforeprint", function () { Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-in"); }); });
   }
+
+  /* ---------- Brochure download: ask for name and mobile first, then download ---------- */
+  (function () {
+    var links = document.querySelectorAll("a[data-lead]");
+    if (!links.length) return;
+    var KEY = "dw-brochure-ok";
+    var seen = function () { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } };
+    var remember = function () { try { localStorage.setItem(KEY, "1"); } catch (e) {} };
+    var go = function (href) {
+      var a = document.createElement("a"); a.href = href; a.download = href.split("/").pop();
+      document.body.appendChild(a); a.click(); a.remove();
+    };
+    var dlg = document.createElement("dialog");
+    dlg.className = "lead-dlg";
+    dlg.innerHTML =
+      '<form method="dialog" class="lead-form" novalidate>' +
+      '<button type="button" class="lead-x" aria-label="Close">&times;</button>' +
+      '<p class="eyebrow">Take-away</p><h3>Download the How We Work brochure</h3>' +
+      '<p class="lead-sub">Tell us who you are and the PDF will download straight away.</p>' +
+      '<label for="ld-name">Full name</label><input id="ld-name" name="name" autocomplete="name" required>' +
+      '<label for="ld-mobile">Mobile number</label><div class="lead-phone"><select name="code" aria-label="Country code">' +
+      '<option value="+91">+91 India</option><option value="+971">+971 UAE</option><option value="+966">+966 KSA</option><option value="+974">+974 Qatar</option><option value="+968">+968 Oman</option><option value="+965">+965 Kuwait</option><option value="+973">+973 Bahrain</option><option value="+44">+44 UK</option><option value="+1">+1 USA/Canada</option><option value="">Other</option>' +
+      '</select><input id="ld-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel-national" required></div>' +
+      '<label for="ld-email">Email <span class="opt">(optional)</span></label><input id="ld-email" name="email" type="email" autocomplete="email">' +
+      '<input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">' +
+      '<label class="lead-consent"><input type="checkbox" name="consent"> I agree that Dreemz Wealth (Wilfred Thomson Varavukalayil, AMFI-registered Mutual Fund Distributor, ARN-359001) may store these details and contact me about the brochure. My details will not be shared.</label>' +
+      '<p class="lead-err" role="alert" hidden></p>' +
+      '<button type="submit" class="btn btn--gold">Download PDF</button>' +
+      '<p class="lead-done" hidden></p>' +
+      '</form>';
+    document.body.appendChild(dlg);
+    var f = dlg.querySelector("form"), err = dlg.querySelector(".lead-err"), done = dlg.querySelector(".lead-done"), href = "";
+    dlg.querySelector(".lead-x").addEventListener("click", function () { dlg.close(); });
+    f.addEventListener("input", function () { err.hidden = true; });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    links.forEach(function (l) {
+      l.addEventListener("click", function (e) {
+        if (seen() || typeof dlg.showModal !== "function") return;   // returning visitor, or very old browser: plain download
+        e.preventDefault(); href = l.getAttribute("href");
+        err.hidden = true; done.hidden = true; f.querySelector("button[type=submit]").hidden = false;
+        dlg.showModal(); f.name.focus();
+      });
+    });
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = f.name.value.trim(), mobile = f.mobile.value.replace(/[^\d]/g, ""), email = f.email.value.trim();
+      var msg = name.length < 2 ? "Please enter your full name." :
+        (mobile.length < 7 || mobile.length > 13) ? "Please enter a valid mobile number." :
+        (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) ? "Please check your email address." :
+        !f.consent.checked ? "Please tick the box to agree before downloading." : "";
+      if (msg) { err.textContent = msg; err.hidden = false; return; }
+      err.hidden = true;
+      if (f.website.value) return;   // spam trap
+      var endpoint = (window.DREEMZ_CONFIG || {}).FORM_ENDPOINT;
+      if (endpoint) {
+        var body = new URLSearchParams({
+          name: name, mobile: f.code.value + " " + mobile, email: email, request: "Brochure download",
+          message: "Downloaded the How We Work brochure" + (email ? " | Email: " + email : ""), note: "",
+          page: location.pathname, sent: new Date().toISOString(), consent: "yes"
+        });
+        try { fetch(endpoint, { method: "POST", mode: "no-cors", body: body }).catch(function () {}); } catch (x) {}
+      }
+      remember(); go(href);
+      f.querySelector("button[type=submit]").hidden = true;
+      done.innerHTML = "Thank you, " + name.split(" ")[0].replace(/[<>&]/g, "") + ". Your download has started. If it does not, <a href=\"" + href + "\" download>download it here</a>.";
+      done.hidden = false;
+    });
+  })();
+
+  /* ---------- Booking calendar (shown only when a booking link is set in config.js) ---------- */
+  (function () {
+    var url = (window.DREEMZ_CONFIG || {}).BOOKING_URL, slot = document.getElementById("booking");
+    if (!slot || !url) return;
+    slot.hidden = false;
+    var f = slot.querySelector("iframe"), l = slot.querySelector(".bk-open");
+    if (f) f.src = url; if (l) l.href = url;
+  })();
 
   /* ---------- Enquiry form → Google Apps Script ---------- */
   var form = document.getElementById("enquiry");

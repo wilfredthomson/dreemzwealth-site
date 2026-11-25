@@ -629,3 +629,140 @@ fieldset.choice input { width: 18px; height: 18px; accent-color: var(--ink); }
 .pt-tag .tagline { font-size: min(1.12vw, 21px); letter-spacing: .1em; gap: .55em; flex-wrap: nowrap; white-space: nowrap; margin: 0; align-items: center; }
 .pt-tag .pt-curve { width: 92%; height: auto; display: block; overflow: visible; }
 @media (max-width: 760px) { .pt-tag { display: none; } }
+
+/* =====================================================================
+   v2.10 visual refinement: quieter gold, lighter type, signature details, gentler motion
+   ===================================================================== */
+
+/* ---- 2. Typography ---- */
+h1, h2, h3 { font-weight: 500; letter-spacing: 0; }
+h1 { font-size: clamp(2.6rem, 1.7rem + 3.4vw, 4rem); line-height: 1.08; }
+h2 { font-size: clamp(2.05rem, 1.5rem + 2vw, 2.9rem); line-height: 1.12; }
+h3 { font-weight: 600; }
+.hero--home h1 { font-weight: 600; }
+.eyebrow { font-family: var(--f-body); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.24em; }
+.prose { max-width: 62ch; }
+.lede { max-width: 56ch; line-height: 1.6; }
+p { line-height: 1.7; }
+
+/* ---- 1. Gold used sparingly: thin lines and small accents ---- */
+.section-head h2::after { width: 56px; height: 1px; margin-top: 16px; border-radius: 0; background: linear-gradient(90deg, #c99a3d, rgba(201, 154, 61, 0)); }
+.stage { border-top: 1px solid rgba(184, 134, 31, .55); padding-top: 20px; }
+.pull { border-left-width: 1px; }
+.stats li { border-left: 1px solid #c99a3d; }
+form.enquiry { border-top: 1px solid #c99a3d !important; }
+.btn--gold { background: linear-gradient(135deg, #f3d48a 0%, #d8ad55 55%, #c99a3d 100%); box-shadow: 0 1px 0 rgba(255, 255, 255, .45) inset, 0 4px 14px rgba(184, 134, 45, .18); }
+/* icons: gold outlines in a fine gold ring, no filled tiles */
+.ico { background: transparent; border: 1px solid rgba(184, 134, 31, .55); border-radius: 50%; color: var(--gold); }
+.offer .tag { background: none; border: 0; padding: 0; letter-spacing: 0.2em; font-family: var(--f-body); font-size: 0.7rem; }
+.faq-item summary::after { background: transparent; border: 1px solid rgba(184, 134, 31, .55); font-weight: 300; }
+.svc h3::before { background: #c99a3d; width: 7px; height: 7px; }
+.gold-dot { background: #d8ad55; width: 4px; height: 4px; }
+/* WhatsApp: navy disc with a fine gold ring instead of solid gold */
+.wa-float { background: var(--ink); color: var(--gold-bright); box-shadow: 0 0 0 1px rgba(224, 184, 95, .8), 0 8px 20px rgba(3, 14, 32, .3); }
+
+/* ---- 3. Signature details ---- */
+/* serif step numbers on Dream | Plan | Invest | Grow */
+.stage .stage-n { font-family: var(--f-display); font-size: 2.1rem; font-weight: 500; font-style: italic; letter-spacing: 0.04em; color: #c99a3d; line-height: 1; }
+/* fine gold divider with a small diamond between consecutive light sections */
+.section { position: relative; }
+main > .section:not(.section--ink) + .section:not(.section--ink)::before {
+  content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: min(320px, 50%); height: 1px;
+  background: linear-gradient(90deg, rgba(201, 154, 61, 0), rgba(201, 154, 61, .75), rgba(201, 154, 61, 0));
+}
+main > .section:not(.section--ink) + .section:not(.section--ink)::after {
+  content: ""; position: absolute; top: -3px; left: 50%; width: 6px; height: 6px;
+  transform: translateX(-50%) rotate(45deg); background: #fbf6ee; border: 1px solid #c99a3d;
+}
+/* faint emblem watermark in the closing box */
+.cta-band { overflow: hidden; }
+.cta-band::after {
+  content: ""; position: absolute; right: -40px; top: 50%; width: 300px; height: 342px; transform: translateY(-50%);
+  background: url("../img/brand/emblem-watermark-gold.png") center / contain no-repeat; opacity: .07; pointer-events: none;
+}
+.cta-band .wrap { position: relative; z-index: 1; }
+/* very light paper grain on the ivory backgrounds */
+body, .section--paper {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .36 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- 4. Gentler motion ---- */
+.js-reveal .reveal { transform: translateY(8px); transition: opacity 1.1s cubic-bezier(.22, .61, .36, 1), transform 1.1s cubic-bezier(.22, .61, .36, 1); }
+.who, .offer, .place, .cred button { transition: box-shadow .45s ease, border-color .45s ease; }
+.who:hover, .offer:hover, .place:hover { transform: none; }
+.btn { transition: background .35s ease, color .35s ease, border-color .35s ease, filter .35s ease, box-shadow .35s ease; }
+.nav a.btn:hover, .nav a.btn:focus-visible { transform: none; }
+.faq-item summary::after { transition: transform .35s ease; }
+/* v2.10: keep descenders (the "g" in Investing) inside the gradient-filled text */
+.hero--home h1 em { padding: 0 .08em .16em 0; margin-bottom: -.12em; line-height: 1.12; }
+/* v2.10: framed registration panel */
+.reg-panel { max-width: 860px; margin: 0 auto clamp(36px, 5vw, 56px); padding: 8px; background: #fffdf8; border: 1px solid rgba(201, 154, 61, .7); box-shadow: 0 18px 40px -24px rgba(10, 33, 73, .35); }
+.reg-inner { border: 1px solid rgba(201, 154, 61, .45); padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px); text-align: center; position: relative; }
+.reg-inner::before, .reg-inner::after { content: ""; position: absolute; width: 7px; height: 7px; background: #fffdf8; border: 1px solid #c99a3d; transform: rotate(45deg); top: -4.5px; left: 50%; margin-left: -3.5px; }
+.reg-inner::after { top: auto; bottom: -4.5px; }
+.reg-kicker { font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: #9a6a12; font-weight: 500; margin: 0; }
+.reg-kicker::before { content: "\2726"; margin-right: 10px; color: #c99a3d; }
+.reg-name { font-family: var(--f-display); font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.3rem); font-weight: 500; color: var(--ink); margin: 10px 0 2px; line-height: 1.15; }
+.reg-role { color: var(--ink-soft); margin: 0 0 22px; }
+.reg-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-top: 1px solid rgba(201, 154, 61, .35); border-bottom: 1px solid rgba(201, 154, 61, .35); }
+.reg-grid > div { padding: 16px 10px; }
+.reg-grid > div + div { border-left: 1px solid rgba(201, 154, 61, .3); }
+.reg-grid dt { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.reg-grid dd { margin: 0; font-family: var(--f-display); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+.reg-verify { margin: 18px 0 0; font-size: .9rem; color: var(--ink-soft); }
+.reg-verify a { color: var(--ink); text-decoration-color: #c99a3d; text-underline-offset: 3px; }
+@media (max-width: 720px) { .reg-grid { grid-template-columns: 1fr 1fr; } .reg-grid > div:nth-child(3) { border-left: 0; } .reg-grid > div:nth-child(n+3) { border-top: 1px solid rgba(201, 154, 61, .3); } }
+/* v2.10: take-away brochure and booking calendar */
+.take-away { margin-top: clamp(32px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 20px 32px; flex-wrap: wrap; padding: 22px 26px; background: #fffdf8; border: 1px solid rgba(201, 154, 61, .55); outline: 1px solid rgba(201, 154, 61, .3); outline-offset: -7px; }
+.take-away h3 { font-size: 1.45rem; margin-top: 4px; }
+.take-away p:not(.eyebrow) { margin: 4px 0 0; color: var(--ink-soft); max-width: 54ch; }
+.booking-frame { border: 1px solid rgba(201, 154, 61, .55); background: #fff; }
+.booking-frame iframe { display: block; width: 100%; height: 700px; border: 0; }
+/* v2.10: brochure download form */
+.lead-dlg { border: 1px solid rgba(201, 154, 61, .7); padding: 0; width: min(460px, calc(100vw - 32px)); background: #fffdf8; color: var(--ink); box-shadow: 0 30px 60px -20px rgba(5, 22, 49, .45); }
+.lead-dlg::backdrop { background: rgba(5, 22, 49, .55); }
+.lead-form { display: grid; gap: 8px; padding: 26px 26px 22px; margin: 7px; border: 1px solid rgba(201, 154, 61, .35); position: relative; }
+.lead-form h3 { font-size: 1.5rem; margin: 2px 0 0; }
+.lead-sub { margin: 0 0 8px; color: var(--ink-soft); font-size: .95rem; }
+.lead-form label { font-size: .85rem; font-weight: 500; margin-top: 4px; }
+.lead-form input[type=text], .lead-form input:not([type]), .lead-form input[type=tel], .lead-form input[type=email], .lead-form select { font: inherit; padding: 10px 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 8px; width: 100%; }
+.lead-phone { display: grid; grid-template-columns: 130px 1fr; gap: 8px; }
+.lead-consent { display: grid !important; grid-template-columns: auto 1fr; gap: 10px; font-weight: 400 !important; font-size: .8rem !important; color: var(--ink-soft); line-height: 1.5; margin-top: 8px !important; }
+.lead-consent input { margin-top: 3px; }
+.lead-err { color: #a3302b; font-size: .85rem; margin: 2px 0 0; }
+.lead-done { margin: 4px 0 0; font-size: .95rem; }
+.lead-done a { color: var(--ink); text-decoration-color: #c99a3d; }
+.lead-form .btn { justify-self: start; margin-top: 8px; }
+.lead-x { position: absolute; top: 8px; right: 10px; border: 0; background: none; font-size: 1.6rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 4px 8px; }
+.lead-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+@media (max-width: 420px) { .lead-phone { grid-template-columns: 110px 1fr; } }
+/* v2.10: life goals graphic on the Services page */
+.goals-fig { margin: 0 0 clamp(32px, 4vw, 48px); border: 1px solid rgba(201, 154, 61, .55); line-height: 0; }
+.goals-art { display: block; width: 100%; height: auto; }
+.goals-m { display: none; }
+@media (max-width: 760px) {
+  .goals-art { display: none; }
+  .goals-m { display: block; line-height: 1.4; padding: 22px 18px 24px; background: linear-gradient(180deg, #e3eef8 0%, #fbf6ee 45%, #fbecc8 100%); text-align: center; }
+  .goals-m-h { font-family: var(--f-display); font-style: italic; font-size: 1.6rem; margin: 4px 0 16px; color: var(--ink); }
+  .goals-m ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 12px; counter-reset: g; }
+  .goals-m li { display: grid; justify-items: center; gap: 6px; font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+  .goals-m li svg { width: 72px; height: 72px; }
+}
+.section--goals { padding-top: 0; }
+main > .section.section--goals::before, main > .section.section--goals::after { display: none; }
+/* v2.10: Dubai to Kerala illustration above the two contact cards */
+.dk-fig { margin: 0 0 clamp(28px, 4vw, 40px); border: 1px solid rgba(201, 154, 61, .55); position: relative; line-height: 0; overflow: hidden; }
+.dk-fig img { display: block; width: 100%; height: auto; }
+.dk-fig figcaption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 clamp(14px, 3vw, 28px) clamp(10px, 1.6vw, 18px); line-height: 1; font-family: var(--f-body); font-size: .72rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: #f7e3a8; pointer-events: none; }
+.dk-fig .dk-star { color: #f3d27f; letter-spacing: 0; }
+@media (max-width: 760px) { .dk-fig img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; } .dk-fig figcaption { font-size: .62rem; letter-spacing: .2em; } }
+#booking { scroll-margin-top: 70px; }
+.booking-frame iframe { height: 760px; }
+@media (max-width: 760px) { .booking-frame iframe { height: 980px; } }
+/* v2.11: room for the new Contact link in the menu bar */
+@media (min-width: 821px) and (max-width: 1100px) { .nav { gap: 0; } .nav a { font-size: 0.8rem; padding: 6px 5px; } .nav a.btn { padding: 7px 10px; } }
+@media (min-width: 1101px) and (max-width: 1279px) { .nav { gap: 0; } .nav a { font-size: 0.86rem; padding: 6px 7px; } }
+@media (min-width: 1280px) and (max-width: 1759px) { .nav a.nav-phone .np-num { display: none; } .nav a.nav-phone { padding-inline: 10px; } }
+@media (min-width: 1280px) { .nav { gap: 0; } .nav a { padding: 6px 9px; font-size: 0.92rem; } .nav a.nav-phone .np-num { display: none; } .nav a.nav-phone { padding-inline: 10px; } }
+@media (min-width: 1001px) and (max-width: 1279px) { .nav-emblem img { max-height: 36px; width: auto; } }
